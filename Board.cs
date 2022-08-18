@@ -3,12 +3,18 @@ namespace M0n0p01y;
 public class Board
 {
     private const string SPACES = "G#C#TR#c##J#U##R#C##F#c##R##u#j##C#Rc#t#";
-    private readonly Player[] _players;
-    public Board(Player[] players)
+
+    public static Space getSpace(int pos)
     {
-        _players = players;
+        throw new NotImplementedException();
     }
-    public void ShowBoard(int verticalOffset, int horizontalOffset)
+    
+    private readonly Player[] _players;
+    public Board(IEnumerable<Player> players)
+    {
+        _players = players.ToArray();
+    }
+    public void ShowBoard(int verticalOffset = 4, int horizontalOffset = 4)
     {
         var horizontalPadding = new string(' ', horizontalOffset);
         var internalPadding = new string(' ', 9);
@@ -35,13 +41,7 @@ public class Board
         }
 
     }
-    public Space this[int pos]
-    {
-        get
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
     public void WriteSpace(int pos)
     {
         foreach (var player in _players)
