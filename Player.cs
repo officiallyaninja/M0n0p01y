@@ -19,5 +19,6 @@ public class Player
     }
     public int Money = 1500;
     public List<Property> Properties { get; private set; } = new List<Property>();
+    public List<Utility> Utilities { get; private set; } = new List<Utility>();
     public int JailCards { get; set; }
 }
