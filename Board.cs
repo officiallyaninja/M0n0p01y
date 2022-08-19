@@ -44,7 +44,7 @@ public class Board
     
     public void WriteSpace(int pos)
     {
-        foreach (var player in _players)
+        foreach (var player in _players.OrderByDescending((x => x.IsCurrentPlayer)))
         {
             if (player.Position != pos) continue;
             

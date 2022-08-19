@@ -5,7 +5,7 @@ var players = new List<Player> { new Player(ConsoleColor.Blue), new Player(Conso
 var board = new Board(players);
 var game = new GameManager(players);
 
-
+//*
 while (true)
 {
     Console.Clear();
@@ -16,3 +16,4 @@ while (true)
     Console.ReadKey();
 
 }
+//*/

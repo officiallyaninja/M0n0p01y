@@ -5,10 +5,10 @@ public class GameManager
 
     private static readonly Random RNG = new Random();
 
-    public readonly Player[] Players;
+    private readonly Player[] _players;
     public GameManager(IEnumerable<Player> players)
     {
-        Players = players.ToArray();
+        _players = players.ToArray();
     }
     
     private int _currentPlayerIndex = 0;
@@ -17,7 +17,7 @@ public class GameManager
     {
         get
         {
-            return Players[_currentPlayerIndex];
+            return _players[_currentPlayerIndex];
         }
     }
 
@@ -55,7 +55,11 @@ public class GameManager
     private void _endTurn()
     {
         DoublesRolled = 0;
-        _currentPlayerIndex = (_currentPlayerIndex + 1) % Players.Length;
+        _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Length;
+        foreach (var player in _players)
+        {
+            player.IsCurrentPlayer = player == CurrentPlayer;
+        }
     }
 
     private void _movePlayerBy(int spaces, bool isPlayerActive = true)
