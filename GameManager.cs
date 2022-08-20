@@ -27,6 +27,9 @@ public class GameManager
         var roll2 = RNG.Next() % 6 + 1;
         var isDouble = roll1 == roll2;
         var sum = roll1 + roll2;
+        
+        CurrentPlayer.LastRoll = sum;
+        
         if (isDouble)
         {
             DoublesRolled += 1;
@@ -34,12 +37,14 @@ public class GameManager
             Console.WriteLine("DOUBLES");
             Console.WriteLine($"{roll1}, {roll2}");
         }
+        
         if (DoublesRolled == 3)
         {
             _goToJail();
             _endTurn();
             return sum;
         }
+        
         _movePlayerBy(sum);
         if (!isDouble)
         {

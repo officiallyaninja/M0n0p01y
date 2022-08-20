@@ -3,7 +3,7 @@ namespace M0n0p01y;
 public class Player
 {
     public ConsoleColor color { get; }
-
+    public int LastRoll { get; set; } = 0;
     private int _position;
     public int Position
     {
@@ -18,7 +18,7 @@ public class Player
         }
     }
     public bool IsCurrentPlayer { get; set; } = false;
-    public int Money  { get; private set; } = 1500;
+    public int Money  { get; set; } = 1500;
     public List<Property> Properties { get; private set; } = new List<Property>();
     public List<Utility> Utilities { get; private set; } = new List<Utility>();
     public int JailCards { get; private set; }

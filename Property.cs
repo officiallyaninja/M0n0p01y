@@ -1,6 +1,9 @@
 namespace M0n0p01y;
 
-public record Property(SpaceType type, int position) : Space(type, position)
+public record Property(string name, SpaceType type, int position, int mortgageValue, int cost) : Buyable(name, SpaceType.Property, position,  mortgageValue, cost)
 {
-    
+    public override int CalculateRent()
+    {
+        throw new NotImplementedException();
+    }
 }

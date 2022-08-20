@@ -1,7 +1,18 @@
 namespace M0n0p01y;
 
-public record Utility(string name, int mortgageValue, SpaceType type, int position) : Space(type, position)
+public record Utility(string name, int position, int mortgageValue, int cost) : Buyable(name, SpaceType.Utility, position,  mortgageValue, cost)
 {
     public string Name = name;
-    public int MortgageValue = mortgageValue;
+
+    public override int CalculateRent()
+    {
+        _ = Owner ?? throw new InvalidOperationException("Owner is null");
+        return Owner.Utilities.Count switch
+        {
+            1 => Owner.LastRoll * 4,
+            2 => Owner.LastRoll * 10,
+            _ => throw new InvalidOperationException(
+                "how the fuck does this player have more than 2 or less than 1 utilities????")
+        };
+    }
 }
