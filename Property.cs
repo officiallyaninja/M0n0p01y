@@ -1,18 +1,28 @@
 namespace M0n0p01y;
 
-public record Property : Buyable
+public abstract record Property(string name, SpaceType type, int position, int mortgageValue, int cost) : Space(name, type, position)
 {
-    public int _houses { get; set; } = 0;
-    private readonly int[] _rent;
-    public int[] Rent => _rent.ShallowCopy();
-    public Property(string name, SpaceType type, int position, int mortgageValue, int cost, int[] rent) : base(name, SpaceType.Property, position,  mortgageValue, cost)
-    {
-        if (rent.Length != 6) throw new ArgumentException("rent must be a 6 element array");
-        _rent = rent;
-    }
+    public int Cost { get; } = cost;
+    public int MortgageValue { get; set; } = mortgageValue;
+    public bool isMortgaged { get; set; }
+    protected Player? Owner { get; set; } = null;
 
-    public override int CalculateRent()
+    public void Mortgage()
     {
-        return _rent[_houses];
+        if (!isMortgaged) throw new InvalidOperationException("Property already mortgaged");
+        if (Owner == null) throw new InvalidOperationException("Owner is null");
+
+        isMortgaged = true;
+        Owner.Money += MortgageValue;
     }
+    public void UnMortgage()
+    {
+        if (isMortgaged) throw new InvalidOperationException("Property is not already mortgaged");
+        if (Owner == null) throw new InvalidOperationException("Owner is null");
+
+        isMortgaged = false;
+        Owner.Money -= MortgageValue;
+    }
+    public abstract int CalculateRent();
+
 }

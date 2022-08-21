@@ -48,7 +48,7 @@ public class Board
         {
             if (player.Position != pos) continue;
             
-            Console.ForegroundColor = player.color;
+            Console.ForegroundColor = player.Color;
             Console.Write("@");
             Console.ForegroundColor = ConsoleColor.White;
             return;

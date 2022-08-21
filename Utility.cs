@@ -1,8 +1,7 @@
 namespace M0n0p01y;
 
-public record Utility(string name, int position, int mortgageValue, int cost) : Buyable(name, SpaceType.Utility, position,  mortgageValue, cost)
+public record Utility(string name, int position, int mortgageValue, int cost) : Property(name, SpaceType.Utility, position,  mortgageValue, cost)
 {
-    public string Name = name;
 
     public override int CalculateRent()
     {
