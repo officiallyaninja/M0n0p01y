@@ -4,7 +4,7 @@ public class Board
 {
     private const string SPACES = "G#C#TR#c##J#U##R#C##F#c##R##u#j##C#Rc#t#";
 
-    public static Space getSpace(int pos)
+    public static Space _getSpace(int pos)
     {
         throw new NotImplementedException();
     }
@@ -41,7 +41,8 @@ public class Board
         }
 
     }
-    
+
+
     public void WriteSpace(int pos)
     {
         foreach (var player in _players.OrderByDescending((x => x.IsCurrentPlayer)))
@@ -53,8 +54,21 @@ public class Board
             Console.ForegroundColor = ConsoleColor.White;
             return;
         }
+        //Console.Write(SPACES[pos]);
+        var space = _getSpace(pos);
+        if (space is Property property)
+        {
+            if (property is ColorProperty colorProperty)
+            {
+                Console.ForegroundColor = colorProperty.Color;
+            }
+            
+            Console.BackgroundColor = property.Owner?.Color ?? ConsoleColor.Black;
+        }
         Console.Write(SPACES[pos]);
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.BackgroundColor = ConsoleColor.Black;
 
-        
     }
 }
+

@@ -20,9 +20,9 @@ public class Player
     public bool IsCurrentPlayer { get; set; } = false;
     public int Money  { get; set; } = 1500;
     private readonly List<Property> _ownedProperties = new List<Property>();
-    public List<ColorProperty> ColorProperties => (List<ColorProperty>)_ownedProperties.Where(x => x.type == SpaceType.Property);
+    public List<ColorProperty> ColorProperties => (List<ColorProperty>)_ownedProperties.Where(x => x.type == SpaceType.ColorProperty);
     public List<Utility> Utilities => (List<Utility>)_ownedProperties.Where(x => x.type == SpaceType.Utility);
-    public List<RailRoad> RailRoads => (List<RailRoad>)_ownedProperties.Where(x => x.type == SpaceType.Property);
+    public List<RailRoad> RailRoads => (List<RailRoad>)_ownedProperties.Where(x => x.type == SpaceType.ColorProperty);
     public int JailCards { get; private set; }
 
     public Player(ConsoleColor color)

@@ -10,7 +10,7 @@ public abstract record Space(string name, SpaceType type, int position)
 
 public enum SpaceType
 {
-    Property,
+    ColorProperty,
     RailRoad,
     Utility,
     Go,

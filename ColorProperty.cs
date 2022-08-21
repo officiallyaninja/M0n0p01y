@@ -6,16 +6,16 @@ public record ColorProperty : Property
     public int Id => ALL.IndexOf(this);
     public int _houses { get; set; } = 0;
     private readonly int[] _rent;
-    public readonly ConsoleColor _color;
+    public readonly ConsoleColor Color;
     public int[] Rent => _rent.ShallowCopy();
 
     public bool IsInMonopoly =>
-        Equals(Owner?.ColorProperties.Where(x => x._color == _color), ALL.Where(x => x._color == _color));
-    public ColorProperty(string name, int position, int mortgageValue, int cost, int[] rent, ConsoleColor color) : base(name, SpaceType.Property, position,  mortgageValue, cost)
+        Equals(Owner?.ColorProperties.Where(x => x.Color == Color), ALL.Where(x => x.Color == Color));
+    public ColorProperty(string name, int position, int mortgageValue, int cost, int[] rent, ConsoleColor color) : base(name, SpaceType.ColorProperty, position,  mortgageValue, cost)
     {
         if (rent.Length != 6) throw new ArgumentException("rent must be a 6 element array");
         _rent = rent;
-        _color = color;
+        Color = color;
     }
 
     public override int CalculateRent()
