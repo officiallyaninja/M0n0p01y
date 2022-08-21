@@ -29,4 +29,11 @@ public class Player
     {
         this.Color = color;
     }
+
+    public void AddProperty(Property property)
+    {
+        property.Owner = this;
+        _ownedProperties.Add(property);
+    }   
+    
 }

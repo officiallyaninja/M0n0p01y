@@ -5,7 +5,7 @@ public abstract record Property(string name, SpaceType type, int position, int m
     public int Cost { get; } = cost;
     public int MortgageValue { get; set; } = mortgageValue;
     public bool isMortgaged { get; set; }
-    protected Player? Owner { get; set; } = null;
+    public Player? Owner { get; set; } = null;
 
     public void Mortgage()
     {
